@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "seed": "node seeder.js",
     "start": "node ./app.js && node ./seeder.js",
-    "build": "npm install connect-flash cookie-parser dotenv ejs express express-session jsonwebtoken mongoose"
+    "build": "npm install connect-flash cookie-parser dotenv ejs express express-session jsonwebtoken mongoose axios"
   },
   "keywords": [],
   "author": "",
