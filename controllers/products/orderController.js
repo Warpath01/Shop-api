@@ -37,10 +37,6 @@ exports.showOrdersApi = async (req, res) => {
         trackingNumber: details.map(order => order.trackingNumber).join(', '),
         sent: details.map(order => order.sent).join(', ')
     };
-
-
-    console.log(order);
-
     res.json({ order });
 };
 
