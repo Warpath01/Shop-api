@@ -17,28 +17,6 @@ exports.showOrders = async (req, res) => {
 exports.showOrdersApi = async (req, res) => {
     const findOrders = await Order.find().populate('product');
 
-    const details = findOrders.map(order => ({
-        name: order.product ? order.product.name : 'No Product',
-        image: order.product ? order.product.image : 'No Image',
-        price: order.product ? order.product.price : 'No Price',
-        description: order.product ? order.product.description : 'No Description',
-        userEmail: order.userEmail,
-        userNumber: order.userNumber,
-        trackingNumber: order.trackingNumber,
-        sent: order.sent
-    }));
-
-    // Directly join the individual fields with commas
-    const order = {
-        name: details.map(order => order.name).join(', '),
-        image: details.map(order => order.image).join(', '),
-        price: details.map(order => order.price).join(', '),
-        description: details.map(order => order.description).join(', '),
-        userEmail: details.map(order => order.userEmail).join(', '),
-        userNumber: details.map(order => order.userNumber).join(', '),
-        trackingNumber: details.map(order => order.trackingNumber).join(', '),
-        sent: details.map(order => order.sent).join(', ')
-    };
     res.json({ order });
 };
 
