@@ -15,9 +15,9 @@ exports.showOrders = async (req, res) => {
 
 // for api access on different apps--------------
 exports.showOrdersApi = async (req, res) => {
-    const order = await Order.find().populate('product');
-
-    res.json({ order });
+    const orders = await Order.find().populate('product');
+    console.log(orders);
+    res.json(orders)
 };
 
 exports.createOrder = async (req, res) => {
