@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h2><a href="/" style="text-decoration: none;">SHOP-APi</a></h2>
+        <nav>
+            <a href="/" style="text-decoration: none;">«- Back to Home</a>
+            <a href="/products">Shop</a>
+        </nav>
+    </header>
+
+
+    <main>
+        <h3>All Ordered Products</h3>
+
+        <section style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <% if (orders.length===0) { %>
+                <p style="grid-column: 1 / -1;">No ordered products at the moment.</p>
+                <% } else { %>
+                    <% orders.forEach(order=> { %>
+                        <article
+                            style="padding: 1rem; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <h4 style="margin-top: 0;">
+                                <%= order.product.name %>
+                            </h4>
+                            <p><strong>$<%= order.product.price %></strong></p>
+                            <p><small>
+                                    <%= order.product.description %>
+                                </small></p>
+                            <form action="/orders/<%= order._id %>/delete" method="POST" style="display:inline">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </article>
+                        <% }) %>
+                            <% } %>
+        </section>
+    </main>
+
+    <footer>
+        <small>&copy; <%= new Date().getFullYear() %> Product App</small>
+    </footer>
+</body>
+
+</html>

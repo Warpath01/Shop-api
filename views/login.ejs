@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+
+
+    <header>
+        <h2><a href="/" style="text-decoration: none;">SHOP-APi</a></h2>
+        <nav>
+            <u>Don't have an account?</u>
+            <a href="/signup">Sign up</a>
+        </nav>
+    </header>
+    <% if (error && error.length> 0) {%>
+        <p id="error-message"
+            style="border: 2px solid red; background-color: #ffe6e6; padding: .6rem; border-radius: 5px; color: red;">
+            <%= error[0] %>
+        </p>
+
+
+        <script>
+            setTimeout(() => {
+                const msg = document.getElementById('error-message');
+                if (msg) {
+                    msg.style.display = 'none';
+                }
+            }, 3000); // 3000ms = 3 seconds
+        </script>
+        <% } %>
+
+            <% if (success && success.length> 0){ %>
+                <p id="success-message"
+                    style="border: 2px solid green; background-color: #e6ffed; padding: .6rem; border-radius: 5px; color: green;">
+                    <%= success[0] %>
+                </p>
+                <script>
+                    setTimeout(() => {
+                        const msg = document.getElementById('success-message');
+                        if (msg) {
+                            msg.style.display = 'none';
+                        }
+                    }, 3000); // 3000ms = 3 seconds
+                </script>
+                <% } %>
+                    <main>
+                        <form action="/auth/login" method="POST">
+                            <fieldset>
+                                <legend>Login your account</legend>
+                                <label for="username"><small>Username</small></label>
+                                <input type="text" id="username" name="username" placeholder="user01">
+                                <label for="password"><small>Password</small></label>
+                                <input type="password" id="password" name="password" placeholder="******">
+                                <input type="submit" value="Log In">
+                            </fieldset>
+                        </form>
+                    </main>
+                    <footer>
+                        <small>&copy; <%= new Date().getFullYear() %> SHOP-APi</small>
+                    </footer>
+</body>
+
+</html>

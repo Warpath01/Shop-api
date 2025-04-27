@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <h2><a href="/" style="text-decoration: none;">SHOP-APi</a></h2>
+        <nav>
+            <u>Already have an account?</u>
+            <a href="/login">Log in</a>
+        </nav>
+    </header>
+    <% if (error && error.length> 0) {%>
+        <p id="error-message"
+            style="border: 2px solid red; background-color: #ffe6e6; padding: .6rem; border-radius: 5px; color: red;">
+            <%= error[0] %>
+        </p>
+
+
+        <script>
+            setTimeout(() => {
+                const msg = document.getElementById('error-message');
+                if (msg) {
+                    msg.style.display = 'none';
+                }
+            }, 3000); // 3000ms = 3 seconds
+        </script>
+        <% } %>
+
+            <main>
+                <form action="/auth/register" method="POST">
+                    <fieldset>
+                        <legend>Create an account</legend>
+                        <label for="fullname"><small>Full Name</small></label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Peter Parker">
+                        <label for="email"><small>Email</small></label>
+                        <input type="text" id="email" name="email" placeholder="email@example.com">
+                        <label for="cellphone"><small>Cellphone No.</small></label>
+                        <input type="text" id="cellphone" name="cellphone" placeholder="09*******19">
+                        <label for="address"><small>Address</small></label>
+                        <input type="text" id="address" name="address" placeholder="Blkr. Street 0909">
+                        <label for="username"><small>Username</small></label>
+                        <input type="text" id="username" name="username" placeholder="user01">
+                        <label for="password"><small>Password</small></label>
+                        <input type="password" id="password" name="password" placeholder="******">
+                        <input type="submit" value="Sign Up">
+                    </fieldset>
+                </form>
+
+            </main>
+            <footer>
+                <small>&copy; <%= new Date().getFullYear() %> SHOP-APi</small>
+            </footer>
+</body>
+
+</html>

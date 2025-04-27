@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h2><a href="/" style="text-decoration: none;">SHOP-APi</a></h2>
+    </header>
+    <% if (order && order.length> 0) {%>
+        <p id="orderMessage"
+            style="border: 1px solid #28a745; background-color: #f0fff4; padding: 0.75rem 1rem; border-radius: 8px; color: #218838; font-size: 1rem; display: inline-block; box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);">
+            <%= order[0] %> <a href="/orders"
+                    style="color: #155724; text-decoration: underline; margin-left: 0.5rem;"><i>(See ordered
+                        items)</i></a>
+        </p>
+
+
+        <script>
+            setTimeout(() => {
+                const msg = document.getElementById('orderMessage');
+                if (msg) {
+                    msg.style.display = 'none';
+                }
+            }, 10000);
+        </script>
+        <% } %>
+
+            <main>
+                <h3>Product Dashboard</h3>
+                <section
+                    style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <% products.forEach(p=> { %>
+                        <article
+                            style="padding: 1rem; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <h4 style="margin-top: 0;">
+                                <%= p.name %>
+                            </h4>
+                            <p
+                                style="padding: 1rem; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); height: 100px; display: flex; align-items: center; justify-content: center;">
+                                <img src="#" alt="<%= p.image %>">
+                            </p>
+
+                            <p><strong>$<%= p.price %></strong></p>
+                            <p>
+                                <%= p.description %>
+                            </p>
+                            <form action="/orders/<%= p._id %>" method="POST" style="display:inline">
+                                <button type="submit">Order</button>
+                            </form>
+                        </article>
+                        <% }) %>
+                </section>
+            </main>
+
+            <footer>
+                <small>&copy; <%= new Date().getFullYear() %> Product App</small>
+            </footer>
+</body>
+
+</html>
