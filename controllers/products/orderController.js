@@ -13,9 +13,9 @@ exports.showOrders = async (req, res) => {
 
 // for api access on different apps--------------
 exports.showOrdersApi = async (req, res) => {
-    const orders = await Order.find().populate('product');
+    const findOrders = await Order.find().populate('product');
 
-    const orderDetails = orders.map(order => ({
+    const details = findOrders.map(order => ({
         name: order.product ? order.product.name : 'No Product',
         image: order.product ? order.product.image : 'No Image',
         price: order.product ? order.product.price : 'No Price',
@@ -27,21 +27,21 @@ exports.showOrdersApi = async (req, res) => {
     }));
 
     // Directly join the individual fields with commas
-    const joinedOrderDetails = {
-        name: orderDetails.map(order => order.name).join(', '),
-        image: orderDetails.map(order => order.image).join(', '),
-        price: orderDetails.map(order => order.price).join(', '),
-        description: orderDetails.map(order => order.description).join(', '),
-        userEmail: orderDetails.map(order => order.userEmail).join(', '),
-        userNumber: orderDetails.map(order => order.userNumber).join(', '),
-        trackingNumber: orderDetails.map(order => order.trackingNumber).join(', '),
-        sent: orderDetails.map(order => order.sent).join(', ')
+    const order = {
+        name: details.map(order => order.name).join(', '),
+        image: details.map(order => order.image).join(', '),
+        price: details.map(order => order.price).join(', '),
+        description: details.map(order => order.description).join(', '),
+        userEmail: details.map(order => order.userEmail).join(', '),
+        userNumber: details.map(order => order.userNumber).join(', '),
+        trackingNumber: details.map(order => order.trackingNumber).join(', '),
+        sent: details.map(order => order.sent).join(', ')
     };
 
 
-    console.log(joinedOrderDetails);
+    console.log(order);
 
-    res.json({ joinedOrderDetails });
+    res.json({ order });
 };
 
 exports.createOrder = async (req, res) => {
